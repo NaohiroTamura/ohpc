@@ -83,8 +83,25 @@ additional = {}
 # Add entries to the dict which have no dependencies
 for v in dependency.values():
     for value in v:
-        if spec_dict[value] not in dependency.keys():
-            additional[spec_dict[value]] = []
+        try:
+            if spec_dict[value] not in dependency.keys():
+               additional[spec_dict[value]] = []
+        except KeyError as err:
+            # 'charliecloud-ohpc(x86-64)' -> 'charliecloud-ohpc'
+            # 'python-numpy-gnu8-ohpc'    -> 'python3-numpy-gnu8-ohpc'
+            # 'python3-Cython-ohpc'       -> 'python34-Cython-ohpc'
+            v.remove(value)
+            if (value == 'charliecloud-ohpc(x86-64)' and
+                'charliecloud-ohpc' in spec_dict.keys()):
+                    v.append('charliecloud-ohpc')
+            elif (value == 'python-numpy-gnu8-ohpc' and
+                'python3-numpy-gnu8-ohpc' in spec_dict.keys()):
+                    v.append('python3-numpy-gnu8-ohpc')
+            elif (value == 'python3-Cython-ohpc' and
+                'python34-Cython-ohpc' in spec_dict.keys()):
+                    v.append('python34-Cython-ohpc')
+            else:
+                print(err)
 
 dependency.update(additional)
 
