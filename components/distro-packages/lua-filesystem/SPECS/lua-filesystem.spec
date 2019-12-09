@@ -17,7 +17,11 @@
 %if 0%{?suse_version} <= 1220
 %global luaver 5.1
 %else
+%if 0%{?suse_version} >= 1500
+%global luaver 5.3
+%else
 %global luaver 5.2
+%endif
 %endif
 %global lualibdir %{_libdir}/lua/%{luaver}
 %global luapkgdir %{_datadir}/lua/%{luaver}
@@ -52,7 +56,11 @@ structure and file attributes.
 sed -i 's|@@LIBDIR@@|%{_libdir}|g;s|@@INCLUDEDIR@@|%{_includedir}|g;' config
 
 %build
+%if 0%{?suse_version} >= 1500
+make %{?_smp_mflags} LUA_LIBDIR=%{lualibdir} CFLAGS="-I%{_includedir}/lua%{luaver} %{optflags} -fPIC"
+%else
 make %{?_smp_mflags} LUA_LIBDIR=%{lualibdir} CFLAGS="%{optflags} -fPIC"
+%endif
 
 %install
 %make_install LUA_LIBDIR="%{lualibdir}"
