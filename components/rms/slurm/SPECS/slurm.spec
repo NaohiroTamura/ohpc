@@ -158,7 +158,7 @@ BuildRequires: libcurl-devel
 
 %if %{with lua}
 %if %{defined suse_version}
-BuildRequires: lua51-devel
+BuildRequires: lua53-devel
 %else
 BuildRequires: lua-devel
 %endif
