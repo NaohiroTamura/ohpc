@@ -23,8 +23,8 @@ URL: https://github.com/chaos/genders
 BuildRequires: gcc-c++
 BuildRequires: bison flex
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: python
-BuildRequires: python-devel
+BuildRequires: python2
+BuildRequires: python2-devel
 Provides: %{pname} = %{version}
 
 %description

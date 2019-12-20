@@ -38,7 +38,7 @@ BuildArch: noarch
 Requires: mysql perl-DBD-mysql
 %else
 Requires: mariadb-server perl-DBD-MySQL
-Requires: perl-Term-ReadLine-Gnu
+#Requires: perl-Term-ReadLine-Gnu
 %endif
 
 %description

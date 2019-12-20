@@ -55,12 +55,11 @@ Requires:  ipmitool
 Requires:  libstdc++-devel
 Requires:  libunwind
 Requires:  lmod%{PROJ_DELIM}
-Requires:  losf%{PROJ_DELIM}
 Requires:  make
 Requires:  man
 Requires:  net-tools
 Requires:  nfs-utils
-Requires:  ntp
+Requires:  chrony
 Requires:  OpenIPMI
 Requires:  pdsh%{PROJ_DELIM}
 Requires:  screen
