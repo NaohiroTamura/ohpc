@@ -17,7 +17,7 @@ Summary:        OpenHPC documentation
 License:        BSD-3-Clause
 Group:          %{PROJ_NAME}/admin
 URL:            https://github.com/openhpc/ohpc
-Source0:        docs-ohpc.tar
+Source0:        https://github.com/NaohiroTamura/ohpc/archive/2.0-local.tar.gz
 
 BuildRequires:  git
 BuildRequires:  texlive-latex

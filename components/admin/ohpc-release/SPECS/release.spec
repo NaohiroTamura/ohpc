@@ -69,25 +69,18 @@ EOF
 
 %{__mkdir_p} ${RPM_BUILD_ROOT}/%{__repodir}
 
+%if 0%{?suse_version}
+%define __repourl http://172.17.0.1:8000/rpmbuild/RPMS
+%else
+%define __repourl http://10.88.0.1:8000/rpmbuild/RPMS
+%endif
+
 cat >> ${RPM_BUILD_ROOT}/%{__repodir}/OpenHPC.repo <<EOF
 [OpenHPC]
-name=OpenHPC-%{ohpc_version} - Base
-baseurl=%{ohpc_repo}/OpenHPC/%{ohpc_version}/%{_repository}
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-OpenHPC-2
+name=OpenHPC-2.0 - Base
+baseurl=%{__repourl}
+gpgcheck=0
 
-[OpenHPC-updates]
-name=OpenHPC-%{ohpc_version} - Updates
-baseurl=%{ohpc_repo}/OpenHPC/%{ohpc_version}/updates/%{_repository}
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-OpenHPC-2
-
-[OpenHPC-Sources]
-name=OpenHPC-%{ohpc_version} - Sources
-baseurl=%{ohpc_repo}/OpenHPC/%{ohpc_version}/sources/%{_repository}
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-OpenHPC-2
-enabled=0
 EOF
 
 # repository GPG key
